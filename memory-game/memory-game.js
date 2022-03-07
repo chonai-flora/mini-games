@@ -55,7 +55,7 @@ function showTurn() {
 }
 
 function setCards() {
-	let numbers = shuffle([...Array(13 * 4).keys()]);
+	let numbers = shuffle([...Array(cardCount).keys()]);
 	for (let i = 0; i < 4; i++) {
 		for (let j = 0; j <= 13; j++) {
 			if (j === 11) continue;
