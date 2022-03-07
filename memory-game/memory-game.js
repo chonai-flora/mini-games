@@ -55,22 +55,20 @@ function showTurn() {
 }
 
 function setCards() {
-	let numbers = [];
-	for (let i = 0; i < 13 * 4; i++) {
-		numbers[i] = i % 13;
-	}
-	numbers = shuffle(numbers);
+	let numbers = shuffle([...Array(13 * 4).keys()]);
 	for (let i = 0; i < 4; i++) {
 		for (let j = 0; j <= 13; j++) {
 			if (j === 11) continue;
 			let k = j > 11 ? j - 1 : j;
-			let num = numbers[toIndex(k, i)];
+			let n = numbers[toIndex(k, i)];
+			let m = n % 13;
+			let o = int(n / 13);
 			trumps.push({
-				'mark': i,
-				'number': num + 1,
+				'mark': o,
+				'number': m + 1,
 				'hidden': true,
 				'card': String.fromCodePoint(
-					0x01F0A1 + 16 * i + num + (num > 10)
+					0x01F0A1 + 16 * o + m + (m > 10)
 				),
 				'pos': [
 					canvas / 13 * k + half / 13,
